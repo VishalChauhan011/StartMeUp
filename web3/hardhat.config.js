@@ -2,11 +2,11 @@
 module.exports = {
   solidity: {
     version: "0.8.9",
-    defaultNetwork: "goerli",
+    defaultNetwork: "Mumbai Testnet",
     networks: {
       hardhat: {},
       goerli: {
-        url: "https://rpc.ankr.com/eth_goerli",
+        url: "https://rpc-mumbai.maticvigil.com/",
         accounts: [`0x${process.env.PRIVATE_KEY}`],
       },
     },
