@@ -28,7 +28,10 @@ contract StartMeUp {
     ) public returns (uint256) {
         Campaign storage campaign = campaigns[numberOfCampaign];
 
-        require(campaign.deadline < block.timestamp, "The deadline should be a date in the future.");
+        require(
+            campaign.deadline < block.timestamp,
+            "The deadline should be a date in the future."
+        );
         campaign.owner = _owner;
         campaign.title = _title;
         campaign.description = _description;
@@ -39,7 +42,7 @@ contract StartMeUp {
 
         numberOfCampaign++;
 
-        return numberOfCampaign-1;
+        return numberOfCampaign - 1;
     }
 
     function donateToCampaign(uint256 _id) public payable {
@@ -52,19 +55,21 @@ contract StartMeUp {
 
         (bool sent, ) = payable(campaign.owner).call{value: amount}("");
 
-        if(sent){
+        if (sent) {
             campaign.amountCollected += amount;
         }
     }
 
-    function getDonators(uint256 _id) view public return(address[] memory, uint256[] memory) {
+    function getDonators(
+        uint256 _id
+    ) public view returns (address[] memory, uint256[] memory) {
         return (campaigns[_id].donators, campaigns[_id].donations);
     }
 
-    function getCampaigns() public view return(Campaign[] memory) {
+    function getCampaigns() public view returns (Campaign[] memory) {
         Campaign[] memory allCampaigns = new Campaign[](numberOfCampaign);
 
-        for(uint i = 0; i < numberOfCampaign; i++) {
+        for (uint i = 0; i < numberOfCampaign; i++) {
             Campaign storage item = campaigns[i];
 
             allCampaigns[i] = item;
