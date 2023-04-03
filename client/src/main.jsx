@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 
 import App from "./App";
+import "./App.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
